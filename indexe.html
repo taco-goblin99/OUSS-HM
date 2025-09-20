@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>المارد الخاص 🔮</title>
+  <style>
+    body {
+      font-family: Tahoma, Arial;
+      text-align: center;
+      background: linear-gradient(to bottom, #f0f8ff, #aee1f9);
+      padding: 20px;
+    }
+    h1 { color: #003366; }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #003366;
+      color: white;
+      transition: 0.3s;
+    }
+    button:hover { background-color: #005599; }
+    #result { display: none; margin-top: 20px; }
+    #images { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+    #images img { border: 3px solid #003366; border-radius: 10px; width: 250px; }
+    audio { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>المارد الخاص 🔮</h1>
+  <p>جاوب على الأسئلة التالية...</p>
+  <div id="questions"></div>
+
+  <div id="result">
+    <h2>عرفت الشخصيات 😎</h2>
+    <div id="images">
+      <img src="pic1.png" alt="الشخصية الأولى">
+      <img src="pic2.png" alt="الشخصية الثانية">
+    </div>
+    <audio id="myAudio">
+      <source src="sound.mp4" type="audio/mp4">
+      المتصفح لا يدعم تشغيل الصوت.
+    </audio>
+  </div>
+
+  <script>
+    let q = 0;
+    const questions = [
+      "هل ترتدي الشخصية ملابس نسائية؟",
+      "هل الشخصية ذكر؟",
+      "هل الشخصية عربية؟",
+      "هل الشخصية من أصول مغربية؟",
+      "هل الشخصية يوتيوبر؟",
+      "هل الشخصية تحب فريق برشلونة؟",
+      "هل الشخصية مع فكرة مجيئ يوسف النصيري و سنادي إلى ريال مدريد؟",
+      "هل الشخصية تحب ڤيني و تكره كيليان مبابي؟",
+      "هل الشخصية تحب السفر على متن البواخر؟",
+      "هل الشخصية قصيرة القامة و تتظاهر بأنها طويلة؟",
+      "هل الشخصية معروفة بمؤخرتها الكبيرة و الجذابة؟"
+    ];
+
+    function showQuestion() {
+      if (q < questions.length) {
+        document.getElementById("questions").innerHTML =
+          "<p><b>السؤال " + (q+1) + ":</b> " + questions[q] + "</p>" +
+          '<button onclick="nextQuestion()">نعم</button>' +
+          '<button onclick="nextQuestion()">لا</button>' +
+          '<button onclick="nextQuestion()">ربما</button>';
+      } else {
+        document.getElementById("questions").style.display = "none";
+        document.getElementById("result").style.display = "block";
+
+        // تشغيل الصوت تلقائي عند ظهور النتيجة
+        var audio = document.getElementById("myAudio");
+        audio.play();
+      }
+    }
+
+    function nextQuestion() {
+      q++;
+      showQuestion();
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
